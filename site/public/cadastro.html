@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro Usuário | CheeseTech Solutions</title>
+
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="stylesheet" href="styles/cadastro_user.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="main-cadastro-user">
+        <div class="left-cadastro-user">
+            <h1>Registre-se <br>E acesse os nossos serviços</h1>
+            <img src="img/cadastro_user.png" class="left-cadastro-user-image" alt="logo da empresa">
+        </div>
+        <div class="right-cadastro-user">
+            <div class="card-cadastro-user">
+                <!-- <h1>CADASTRO DO USUÁRIO</h1> <br>    -->
+                <div class="text-field">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome_input" placeholder="Nome">
+                    <div id="erro_nome"></div>
+                </div>
+                <div class="text-field">
+                    <label for="cnpj">CNPJ</label>
+                    <input type="text" id="cnpj_input" class="" placeholder="XX.XXX.XXX/XXXX-XX">
+                    <div id="erro_cnpj"></div>
+                </div>
+                <div class="text-field">
+                    <label for="email">Email</label>
+                    <input type="text" id="email_input" placeholder="Email">
+                    <div id="erro_email"></div>
+                </div>
+                <div class="text-field">
+                    <label for="senha">Criar Senha</label>
+                    <input type="password" id="senha_input" placeholder="********">
+                    <div id="erro_senha"></div>
+                </div>
+                <div class="text-field">
+                    <label for="confirmar-senha">Confirmar Senha</label>
+                    <input type="password" id="confirmacao_senha_input" placeholder="********">
+                    <div id="erro_confirmar_senha"></div>
+                </div>
+                <button onclick="cadastrar()" class="botao-cadastro-user">Registrar Usuário</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        erro_email.innerHTML = "";
+        erro_senha.innerHTML = "";
+        erro_confirmar_senha.innerHTML = "";
+        erro_cnpj.innerHTML = "";
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" ) {
+            alert("Preencha os campos vazios")
+
+        } else {
+
+             if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
+
+                erro_email.innerHTML = "email inválido"
+                input_email.className = "invalido"
+               
+
+                if (emailVar.indexOf("@") == -1) {
+
+                    erro_email.innerHTML = `Está faltando o @`
+                   
+
+                }
+                else if (emailVar.endsWith(".com") == false) {
+
+                    erro_email.innerHTML = `Está faltando o ".com"`
+                   
+                }
+
+            }
+
+            else if (!/[!@#\$%\^&\*\(\)\-_\+=\[\]{};':"\\|,.<>\/?]/.test(senhaVar)) { /* O sinal de exclamação ! no início inverte o resultado da verificação*/
+                erro_senha.innerHTML = 'Senha inválida!'
+                erro_senha.innerHTML += ' A senha deve conter pelo menos um caractere especial.'
+                input_senha.className = "invalido"
+                
+            }
+
+            else if (senhaVar.length < 8) {
+                erro_senha.innerHTML = 'Senha inválida!'
+                erro_senha.innerHTML += ' Precisa ter ao menos 8 dígitos'
+                input_senha.className = 'invalido'
+                
+            }
+
+            else if
+                (confirmacaoSenhaVar != senhaVar) {
+                erro_confirmar_senha.innerHTML = `A senha de confirmação não corresponde à senha inserida. Por favor, tente novamente`
+                input_confirmar_senha.className = "invalido"
+               
+            } 
+            alert ("Cadastro Concluído com sucesso!")
+            window.location = "index.html";
+        } 
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+            })
+        })
+
+        
+    }
+
+
+</script>

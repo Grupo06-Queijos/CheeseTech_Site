@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/calculadora_financeira.css">
+    <title>Calculadora Financeira | CheeseTech Solutions</title>
+  </head>
+  <body>
+
+    <div class="card"> 
+        <br>
+        <h2>Calculadora Financeira</h2>
+        Preço do queijo por quilo: <br>
+        <input type="number" id="input_preco"><br> <br>
+        Quantidade de queijo produzida por semana(kg):
+        <input type="number" id="input_quantidade"><br> <br>
+        <button onclick="calcular_perda()">Calcular perda</button> 
+        <br><br>
+        <div id="div_perda"> </div>
+    </div>
+  </body>
+</html>
+
+
+<script>
+  function calcular_perda() {
+    var Preco = Number(input_preco.value);
+    var Produção = Number(input_quantidade.value);
+    var PerdaQueijoSemanal = (Produção*0.15).toFixed(2);
+    var PerdaQueijoMensal = (PerdaQueijoSemanal*4).toFixed(2); /*.toFixed(2) = arredonda os valores para duas casas decimais após a vírgula*/
+    var PerdaQueijoAnual = (PerdaQueijoMensal*12).toFixed(2);
+
+    var PerdaFinanceiraSemanal = (PerdaQueijoSemanal * Preco).toFixed(2);
+    var PerdaFinanceiraMensal = (PerdaQueijoMensal * Preco).toFixed(2);
+    var PerdaFinanceiraAnual = (PerdaQueijoAnual * Preco).toFixed(2);
+
+    div_perda.innerHTML = `
+    De acordo com uma pesquisa da Universidade de Winsconsin-Madison, 
+    as perdas financeiras podem variar em média, <br>
+    15% devido ao mau-monitoramento do processo de maturação. <br>
+    Tendo isso como base, em uma produção de ${Produção}kg, sem o monitoramento correto: <br><br>
+    <div class="listaPerdas">
+      <b>Semanalmente</b> você está suscetível a perder <b><u>${PerdaQueijoSemanal}</u></b> Kg de Queijo e <b><u>R$${PerdaFinanceiraSemanal}</u></b>.<br>
+      <b>Mensalmente</b> você está suscetível a perder <b><u>${PerdaQueijoMensal}</u></b> Kg de Queijo e <b><u>R$${PerdaFinanceiraMensal}</u></b>.<br>
+      <b>Anualmente</b> você está suscetível a perder <b><u>${PerdaQueijoAnual}</u></b> Kg de Queijo e <b><u>R$${PerdaFinanceiraAnual}</u></b>.<br> <br>
+    <div>`;
+  }
+</script>

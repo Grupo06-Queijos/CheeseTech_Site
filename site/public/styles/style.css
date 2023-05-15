@@ -1,0 +1,442 @@
+
+body{
+    color: black;
+    font-family: 'Poppins';
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section{
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* <!-- Início Estilização Cabeçario --> */
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+#title{
+    font-size: 14px;
+}
+
+li{
+    display: inline-block;
+    margin: 20px;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: #dd9e34;
+    transition: 0.3s all;
+}
+
+#login_btn{
+    border: 2px solid #dd9e34;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dd9e34;
+    color: white;
+}
+
+#login_btn:hover{
+    background-color: white;
+    color: black;
+}
+
+/* <!-- Fim Estilização Cabeçario --> */
+
+
+/* <!-- Estilização Home --> */
+
+h1{
+    font-weight: 200;
+}
+
+#main_home{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+#aside_home{
+    width: 700px;
+}
+
+.h2_home{
+    font-size: 56px;
+    line-height: 10px;
+    font-weight: bold;
+    width: 630px;
+}
+
+span{
+    color: #dd9e34;
+}
+
+p{
+    line-height: 20px;
+    max-width: 500px;
+    font-size: 15px;
+}
+
+#img_queijo{
+    width: 450px;
+    height: 450px; 
+    margin-left: 120px;
+    margin-top: -40px;
+}
+
+#aside_home a{
+    text-decoration: none;
+    color: white;
+}
+
+#saiba_mais{
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+    border: none;
+    font-size: 15px;
+    height: 50px;
+    width: 30%;
+    background-color: #dd9e34;
+    color: white;
+    font-weight: bold;
+}
+
+#saiba_mais:hover{
+   cursor: pointer;
+}
+
+/* <!-- Fim Estilização Home --> */
+
+/*Começo do Nossos Serviços*/
+
+#sessao2{
+    margin:0;
+    padding: 0px;
+    text-align: center;
+    transition: 0.5s;
+    background: #ffffff;
+    min-height: 150vh;
+}
+
+#h1_nossoServico{
+    color: #000000;
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 20%;
+}
+
+.row{
+    padding-top: 50px;
+    width: 1150px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: -40px;
+}
+
+.box{
+    width: 350px;
+    height: 500px;
+    background: #ffffff;
+
+}
+
+.box h3{
+    color: #dd9e34;
+    font-size: 25px;
+}
+
+.box p{
+    padding-top: 10px;
+    line-height: 20px;
+}
+
+#div_simuleAqui{
+    background-color: #152325;
+    height: 250px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+#btn_simuleAqui{
+    border-radius: 20px;
+    margin-top: 50px;
+    border: none;
+    font-size: 15px;
+    height: 50px;
+    width: 15%;
+    background-color: #dd9e34;
+    color: white;
+    font-weight: bold;
+}
+
+#btn_simuleAqui:hover{
+    cursor: pointer;
+}
+
+#div_simuleAqui h2{
+    color:white;
+}
+
+#div_simuleAqui a{
+    color:white;
+    text-decoration: none;
+}
+
+
+#div_cadastroEmpresa{
+    align-items: center;
+}
+
+
+#div_cadastroEmpresa a{
+    color: black;
+    text-decoration: none;
+    
+}
+
+#div_cadastroEmpresa a:hover{
+    color: #dd9e34;
+    text-decoration: none;
+}
+
+
+/*Fim do Nossos Serviços*/
+
+
+
+/* Início do Quem Somos*/
+
+section #sessao3 {
+
+    margin-top: 60px;
+
+}
+
+.social{
+    display: flex;
+    height: 350px;
+}
+
+.card img{
+    width: 85px;
+    height: 85px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.social .container{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.card h4{
+    color: #dd9e34;
+}
+
+.card p{
+    text-align: center;
+}
+
+#subtitulo{
+    font-size: 32px;
+    line-height: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+#main_sobrenos{
+    display: flex;
+    flex-direction: row;
+}
+
+#img_sobre-nos{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: left;
+    margin-left: -130px;
+    margin-top: 20px;
+}
+
+#aside_sobrenos{
+    margin-right: 180px;
+}
+
+#article_sobrenos{
+    margin-top: 120px;
+
+}
+
+#h2_sobrenos{
+    font-size: 56px;
+    font-weight: bold;
+    text-align: right;
+    line-height: 3px;
+}
+
+#p_sobrenos{
+    line-height: 25px;
+    max-width: 500px;
+    font-size: 13px;
+    text-align: right;
+    margin-top: 30px;
+}
+
+#article_sobrenos hr{
+    background-color: #dd9e34;
+    border: none;
+    display: flex;
+}
+/*Fim do Quem Somos*/
+
+
+/* Início do Contato*/
+#h1_contato{
+    color: #000000;
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 30px;
+    border-radius: 20%;
+    line-height: 3px;
+}
+
+#sessao4 hr{
+    background-color: #dd9e34;
+    border: none;
+    display: flex;
+}
+
+
+#main_contato{
+    display: flex;
+    flex-direction: row;
+}
+
+#aside_contato{
+    margin-left: 90px;
+    margin-right: 90px;
+}
+
+#article_contato{
+    margin-top: 20px;
+}
+
+#article_contato h3{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 3px;
+    margin-top: 25px;
+}
+
+#article_contato p{
+    line-height: 20px;
+    max-width: 500px;
+    font-size: 15px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+#div_instagram{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#div_instagram p{
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+#div_facebook{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#div_facebook p{
+    margin-top: 8px;
+    margin-left: 7px;
+    font-size: 15px;
+}
+/* Fim do Contato*/
+
+/* Início do Footer*/
+
+footer{
+    background-color: black;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #ffffff;
+    margin-left: -160px;
+}
+
+.footer_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer_content h3{
+    font-size: 23px;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3px;
+}
+
+.footer_content p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.sociais{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+.sociais li{
+    margin: 0 10px;
+}
+
+.sociais a{
+    text-decoration: none;
+}
+
+
+/* Fim do Footer*/
