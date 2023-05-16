@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/login.css">
+    <title>Login | CheeseTech Solutions</title>
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça login<br>E analise seus queijos</h1>
+            <img src="img/Astronaut-pana.png" class= "left-login-image" alt = "logo da empresa">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>LOGIN</h1>
+                <div class="text-field">
+                    <label for="email">Email</label>
+                    <input type="text" id="input_email" placeholder="Insira seu e-mail">
+                </div>
+                <div class="text-field">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="input_senha" placeholder="Insira sua senha">
+                </div>
+                <button onclick = 'verificar()' class="botao-login">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+function verificar(){
+    var email = input_email.value
+    var senha = input_senha.value
+    if(email == "" || senha == ""){
+        alert('preencha todos os campos')
+    } else{window.location = "dashboard.html";} /*direciona o user até a página dashboard*/
+}
+</script>
