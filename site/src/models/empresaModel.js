@@ -9,14 +9,14 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function entrar(cnpj, empresa, emailemp, telefone, cep, camara) {
+/* function entrar(cnpj, empresa, emailemp, telefone, cep, camara) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, empresa, emailemp, telefone, cep, camara)
     var instrucao = `
         SELECT * FROM Empresa WHERE emailemp = '${emailemp}' AND CEP = '${cep}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
-}
+} */
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar(cnpj, empresa, emailemp, telefone, cep, camara) {
@@ -32,7 +32,7 @@ function cadastrar(cnpj, empresa, emailemp, telefone, cep, camara) {
 }
 
 module.exports = {
-    entrar,
+    //entrar,
     cadastrar,
     listar,
 };

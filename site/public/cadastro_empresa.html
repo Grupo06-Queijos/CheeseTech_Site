@@ -47,7 +47,7 @@
                     <label for="Qtd Câmara">Número de Câmaras</label>
                     <input type="number" id="input_câmaras" class = "" placeholder="ex: 5">
                 </div>
-                <button onclick='cadastro()' class="botao-cadastro">Registrar Empresa</button>
+                <button onclick='cadastrar()' class="botao-cadastro">Registrar Empresa</button>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
 
 <script>
 
-    function cadastro() {
+    function cadastrar() {
 
         var cnpj = input_CNPJ.value;
         var empresa = input_empresa.value;
@@ -71,7 +71,7 @@
         erro_telefone.innerHTML = "";
 
 
-        if (cnpj == "" || empresa == "" || emailemp == "" || telefone == "" || cep == "" || camara == "") {
+         if (cnpj == "" || empresa == "" || emailemp == "" || telefone == "" || cep == "" || camara == "") {
            
            alert("Preencha os campos vazios"); 
            
@@ -125,9 +125,9 @@
                  window.location = "index.html";
             }
 
-        }
+        } 
     
-    }
+    
      // Enviando o valor da nova input
      fetch("/empresa/cadastrar", {
         method: "POST",
@@ -145,6 +145,7 @@
             camaraServer: camara,
         })
     })
+}
 </script>
 
 
