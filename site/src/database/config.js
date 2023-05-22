@@ -17,12 +17,13 @@ var sqlServerConfig = {
     }
 }
 
-// CONEXÃO DO MYSQL WORKBENCH (LOCAL)
+// // CONEXÃO DO MYSQL WORKBENCH (LOCAL)
+// MUDAR ISSO PARA CADA COMPUTADOR 
 var mySqlConfig = {
     host: "localhost",
     database: "Cheese_Tech",
-    user: "root",
-    password: "38762",
+    user: "aluno",
+    password: "sptech",
 };
 
 function executar(instrucao) {
