@@ -65,6 +65,7 @@
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
+        var fkCNPJVar = input_cnpj.value; 
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
         erro_email.innerHTML = "";
@@ -133,6 +134,7 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
+                fkCNPJVarServer: fkCNPJVar,
             })
         })
 
