@@ -11,8 +11,8 @@ Email VARCHAR(45) NOT NULL,
 Telefone CHAR(14) NOT NULL,
 CEP CHAR(9) NOT NULL,
 Camara INT NOT NULL
-);
 
+);
 DESC Empresa;
 
 CREATE TABLE Usuario(
@@ -44,7 +44,7 @@ CONSTRAINT fkEnderecoCamara FOREIGN KEY (fkEndereco)
 	REFERENCES Endereco(idEndereco),
 fkMetricaQueijo INT,
 CONSTRAINT fkMetricaQueijo FOREIGN KEY (fkMetricaQueijo)
-	REFERENCES Queijo_Metricas(idQueijo_metrica)        
+	REFERENCES Queijo_Metricas(idQueijo_metrica)       
 ); 
 DESC Camara;
 
@@ -71,6 +71,7 @@ CONSTRAINT pkComposta PRIMARY KEY (idRegistro, fkSensor)
 DESC Registro_Sensor;
 
 -- Inserindo dados nas tabelas
+
 
 INSERT INTO Endereco VALUES
 (NULL, 'Francisco Machado', 'São Joaquim', 1560 , '3° Andar', 'São Roque de Minas', 'MG', '09345-020'),
