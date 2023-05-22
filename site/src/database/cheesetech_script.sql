@@ -1,6 +1,6 @@
 CREATE DATABASE Cheese_Tech;
-
 USE Cheese_Tech;
+drop database Cheese_Tech;
 
 -- Criando as tabelas de acordo com a modelagem
 
@@ -21,21 +21,22 @@ CNPJ CHAR(18) PRIMARY KEY,
 Nome_Empresa VARCHAR(45) NOT NULL,
 Email VARCHAR(45) NOT NULL,
 Telefone CHAR(14) NOT NULL,
-fkEndereco INT,
-CONSTRAINT fkEndereco FOREIGN KEY (fkEndereco)
-		REFERENCES Endereco(idEndereco)
-);
-DESC Empresa;
+CEP CHAR(9),
+Camara INT
 
+);
+
+DESC Empresa;
+DROP Table usuario;
 CREATE TABLE Usuario(
-idUsuario INT AUTO_INCREMENT,
+idUsuario INT primary key AUTO_INCREMENT,
 Nome VARCHAR(45) NOT NULL,
 Email VARCHAR(45) NOT NULL,
-Senha VARCHAR(45) NOT NULL,
-fkCNPJ CHAR(18),
-CONSTRAINT fkCNPJ FOREIGN KEY (fkCNPJ) 
-	REFERENCES Empresa(CNPJ),
-CONSTRAINT pkComposta PRIMARY KEY (idUsuario, fkCNPJ)
+Senha VARCHAR(45) NOT NULL
+ -- fkCNPJ CHAR(18),
+ -- CONSTRAINT fkCNPJ FOREIGN KEY (fkCNPJ) 
+	 -- REFERENCES Empresa(CNPJ),
+-- CONSTRAINT pkComposta PRIMARY KEY (idUsuario, fkCNPJ)
 );
 DESC Usuario;
 
@@ -74,7 +75,7 @@ CREATE TABLE Registro_Sensor(
 idRegistro INT AUTO_INCREMENT,
 Umidade FLOAT NOT NULL,
 Temperatura FLOAT NOT NULL,
-Data_Hora DATETIME NOT NULL, 
+Data_Hora DATETIME NOT NULL,
 fkSensor INT,
 CONSTRAINT fkSensor FOREIGN KEY (fkSensor) 
 	REFERENCES Sensores(idSensor),
