@@ -64,6 +64,7 @@
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
+        var fkCNPJVar = cnpj_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
         erro_email.innerHTML = "";
@@ -71,7 +72,7 @@
         erro_confirmar_senha.innerHTML = "";
         erro_cnpj.innerHTML = "";
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" ) {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || fkCNPJVar == '') {
             alert("Preencha os campos vazios")
 
         } else {
@@ -132,6 +133,7 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
+                fkCNPJServer: fkCNPJVar,
             })
         })
 

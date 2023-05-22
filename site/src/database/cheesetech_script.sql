@@ -1,42 +1,29 @@
 CREATE DATABASE Cheese_Tech;
 USE Cheese_Tech;
-drop database Cheese_Tech;
+drop database cheese_tech;
 
 -- Criando as tabelas de acordo com a modelagem
-
-CREATE TABLE Endereco(
-idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-Rua VARCHAR(45) NOT NULL,
-Bairro VARCHAR(45) NOT NULL,
-Numero INT NOT NULL,
-Complemento VARCHAR(45),
-Cidade VARCHAR(45) NOT NULL,
-Estado CHAR(2) NOT NULL,
-CEP CHAR(9) NOT NULL
-);
-DESC Endereco;
 
 CREATE TABLE Empresa(
 CNPJ CHAR(18) PRIMARY KEY,
 Nome_Empresa VARCHAR(45) NOT NULL,
 Email VARCHAR(45) NOT NULL,
 Telefone CHAR(14) NOT NULL,
-CEP CHAR(9),
-Camara INT
-
+CEP CHAR(9) NOT NULL,
+Camara INT NOT NULL
 );
 
 DESC Empresa;
-DROP Table usuario;
+
 CREATE TABLE Usuario(
-idUsuario INT primary key AUTO_INCREMENT,
+idUsuario INT AUTO_INCREMENT,
 Nome VARCHAR(45) NOT NULL,
 Email VARCHAR(45) NOT NULL,
-Senha VARCHAR(45) NOT NULL
- -- fkCNPJ CHAR(18),
- -- CONSTRAINT fkCNPJ FOREIGN KEY (fkCNPJ) 
-	 -- REFERENCES Empresa(CNPJ),
--- CONSTRAINT pkComposta PRIMARY KEY (idUsuario, fkCNPJ)
+Senha VARCHAR(45) NOT NULL,
+fkCNPJ CHAR(18),
+CONSTRAINT fkCNPJ FOREIGN KEY (fkCNPJ) 
+	REFERENCES Empresa(CNPJ),
+CONSTRAINT pkComposta PRIMARY KEY (idUsuario, fkCNPJ)
 );
 DESC Usuario;
 
@@ -75,9 +62,9 @@ CREATE TABLE Registro_Sensor(
 idRegistro INT AUTO_INCREMENT,
 Umidade FLOAT NOT NULL,
 Temperatura FLOAT NOT NULL,
-Data_Hora DATETIME NOT NULL,
+Data_Hora datetime default current_timestamp, 
 fkSensor INT,
-CONSTRAINT fkSensor FOREIGN KEY (fkSensor) 
+ CONSTRAINT fkSensor FOREIGN KEY (fkSensor) 
 	REFERENCES Sensores(idSensor),
 CONSTRAINT pkComposta PRIMARY KEY (idRegistro, fkSensor)
 );
@@ -94,7 +81,7 @@ INSERT INTO Empresa VALUES
 ('12.345.678/0001-01', 'Cantinho Mineiro', 'cantinhomineiro@gmail.com', '(11)97878-8956', 2),
 ('12.345.678/0002-02', 'Delicias da Serra', 'deleciasdaserra@gmail.com', '(11)90051-6555', 1),
 ('12.345.678/0003-03', 'Tradição Canastra', 'tradicaocanastra@gmail.com', '(11)95214-5897', 3);
-
+ 
 INSERT INTO Usuario VALUES
 (NULL, 'Lucas', 'lucas@gmail.com', 'lucas123', '12.345.678/0002-02'),
 (NULL, 'Marcos', 'marcos@gmail.com', 'marcos123', '12.345.678/0001-01'),
