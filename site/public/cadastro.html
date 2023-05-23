@@ -65,7 +65,7 @@
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
-        var fkCNPJVar = input_cnpj.value; 
+        var fkCNPJVar = cnpj_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
         erro_email.innerHTML = "";
@@ -73,27 +73,27 @@
         erro_confirmar_senha.innerHTML = "";
         erro_cnpj.innerHTML = "";
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" ) {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || fkCNPJVar == "") {
             alert("Preencha os campos vazios")
 
         } else {
 
-             if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
+            if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
 
                 erro_email.innerHTML = "email inválido"
                 input_email.className = "invalido"
-               
+
 
                 if (emailVar.indexOf("@") == -1) {
 
                     erro_email.innerHTML = `Está faltando o @`
-                   
+
 
                 }
                 else if (emailVar.endsWith(".com") == false) {
 
                     erro_email.innerHTML = `Está faltando o ".com"`
-                   
+
                 }
 
             }
@@ -102,25 +102,32 @@
                 erro_senha.innerHTML = 'Senha inválida!'
                 erro_senha.innerHTML += ' A senha deve conter pelo menos um caractere especial.'
                 input_senha.className = "invalido"
-                
+
+            }
+            
+            else if (fkCNPJVar.length != 18 || fkCNPJVar.indexOf('.') == -1 || fkCNPJVar.indexOf('/') == -1 || fkCNPJVar.indexOf('-') == -1) {
+
+                erro_cnpj.innerHTML = 'O cnpj é inválido, por favor verifique o campo inserido'
+                input_cnpj.className = `inválido`
+
             }
 
             else if (senhaVar.length < 8) {
                 erro_senha.innerHTML = 'Senha inválida!'
                 erro_senha.innerHTML += ' Precisa ter ao menos 8 dígitos'
                 input_senha.className = 'invalido'
-                
+
             }
 
             else if
                 (confirmacaoSenhaVar != senhaVar) {
                 erro_confirmar_senha.innerHTML = `A senha de confirmação não corresponde à senha inserida. Por favor, tente novamente`
                 input_confirmar_senha.className = "invalido"
-               
-            } 
-            alert ("Cadastro Concluído com sucesso!")
+
+            }
+            alert("Cadastro Concluído com sucesso!")
             window.location = "login.html";
-        } 
+        }
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
@@ -134,11 +141,11 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                fkCNPJVarServer: fkCNPJVar,
+                fkCNPJServer: fkCNPJVar,
             })
         })
 
-        
+
     }
 
 
