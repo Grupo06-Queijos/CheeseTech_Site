@@ -54,6 +54,8 @@ function buscarMedidasEmTempoReal(idAquario) {
         //                 fk_aquario 
         //                 from medida where fk_aquario = ${idAquario} 
         //             order by id desc limit 1`;
+
+        
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

@@ -109,49 +109,49 @@ function atualizacaoPeriodica() {
         obterdados(3);
         obterdados(4);
 
-        setTimeout(atualizacaoPeriodica, 5000);
+        /* setTimeout(atualizacaoPeriodica, 5000); */
     // obterdados(1);
     // obterdados(2);
     // obterdados(3);
     // obterdados(4);
 
-    // function sendData() {
-    //     var http = new XMLHttpRequest();
-    //     http.open('POST', 'http://localhost:3000/api/sendData', false);
-    //     http.   send(null);
-    // }
+    function sendData() {
+        var http = new XMLHttpRequest();
+        http.open('POST', 'http://localhost:3000/api/sendData', false);
+        http.   send(null);
+    }
 
-    // setInterval(() => {
-    //     sendData();
-    // }, 2000);
-    // setTimeout(atualizacaoPeriodica, 5000);
+    setInterval(() => {
+        sendData();
+    }, 2000);
+    setTimeout(atualizacaoPeriodica, 5000);
 }
 
-// // function obterdados(idAquario) {
-//     fetch(`/medidas/tempo-real/${idAquario}`)
-//         .then(resposta => {
+function obterdados(idAquario) {
+    fetch(`/medidas/tempo-real/${idAquario}`)
+        .then(resposta => {
 
-//             if (resposta.ok) {
-//                 resposta.json().then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(resposta => {
 
-//                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-//                     var dados = {
-//                         temperatura: resposta[0].temperatura,
-//                     }
+                    var dados = {
+                        temperatura: resposta[0].temperatura,
+                    }
 
-//                     alertar(resposta[0].temperatura, idAquario);
-//                 });
-//             } else {
+                    alertar(resposta[0].temperatura, idAquario);
+                });
+            } else {
 
-//                 console.error('Nenhum dado encontrado ou erro na API');
-//             }
-//         })
-//         .catch(function (error) {
-//             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-//         });
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+        });
 
-// }
+}
 
 // // function alertar(temperatura, idAquario) {
 // //     var limites = {
