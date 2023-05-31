@@ -59,14 +59,11 @@ CONSTRAINT fkCamara FOREIGN KEY (fkCamara)
 DESC Sensores;
 
 CREATE TABLE Registro_Sensor(
-idRegistro INT AUTO_INCREMENT,
-Umidade FLOAT NOT NULL,
-Temperatura FLOAT NOT NULL,
-Data_Hora datetime default current_timestamp, 
-fkSensor INT,
- CONSTRAINT fkSensor FOREIGN KEY (fkSensor) 
-	REFERENCES Sensores(idSensor),
-CONSTRAINT pkComposta PRIMARY KEY (idRegistro, fkSensor)
+idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+Umidade DECIMAL NOT NULL,
+Temperatura DECIMAL NOT NULL,
+Data_Hora DATETIME NOT NULL,
+fkSensor INT, FOREIGN KEY (fkSensor) REFERENCES Sensores(idSensor)
 );
 DESC Registro_Sensor;
 

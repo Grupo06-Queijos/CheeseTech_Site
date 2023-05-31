@@ -39,8 +39,8 @@ function buscarMedidasEmTempoReal(idAquario) {
         instrucaoSql = `select top 1
         Temperatura as temperatura, 
         Umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
+                        CONVERT(varchar, Data_Hora, 108) as momento_grafico, 
+                        fkSensor
                         from Registro_Sensor where fkSensor = ${idAquario} 
                     order by idRegistro desc`;
 

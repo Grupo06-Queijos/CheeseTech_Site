@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/style_dashboard.css">
     <script src="../js/funcoes.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-     <link rel="icon" href="./assets/img/logo2.png">
+    <link rel="icon" href="./assets/img/logo2.png">
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -21,138 +21,139 @@
 
 <body onload="atualizarFeed(), atualizacaoPeriodica()">
 
-        <div class="header-left">
-            <h1>CheeseTech</h1>
+    <div class="header-left">
+        <h1>CheeseTech</h1>
 
-            <img src="../assets/img/logo2.png" width="150px" height="150px">
+        <img src="../assets/img/logo2.png" width="150px" height="150px">
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+
+        <div class="btn-nav-white">
+            <a href="cards.html">
+                <h3>Monitoramento</h3>
+            </a>
+        </div>
+
+        <div class="btn-nav">
+
+            <h3>Gráficos</h3>
+
+        </div>
+        <div class="btn-nav-white">
+            <a
+                href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
+                <h3>Suporte</h3>
+            </a>
+        </div>
+
+        <div class="btn-nav-white-M">
+            <a href="./dashboard.html">
+                <h3>Manual de instalação</h3>
+            </a>
+        </div>
+
+        <div class="btn-logout">
+            <a href="./index.html">
+                <h3>Sair</h3>
+            </a>
+        </div>
+
+    </div>
+
+    <h2>Dashboard</h2>
+    <br>
+    <div class="btns-dash">
+        Selecione a câmara desejada:
+        <select id="select_graficos">
+            <option value="cam1">Câmara 1</option>
+            <option value="cam2">Câmara 2</option>
+            <option value="cam3">Câmara 3</option>
+            <option value="cam4">Câmara 4</option>
+        </select>
+    </div>
+    <br>
+
+    <!-- <option value="camEscolha">Escolha uma câmara</option> -->
+
+
+    <div class="dash">
+
+        <div class="KPIS">
+            <div class="row">
+                <h2>Temperatura Máxima</h2>
+                <div class="KPI-temp-max">
+                    <h1>25°C</h1>
+                </div>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Monitoramento</h3>
-                </a>
+            <div class="row">
+                <h2>Temperatura Mínima</h2>
+                <div class="KPI-temp-min">
+                    <h1>19°C</h1>
+                </div>
             </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
+            <div class="row">
+                <h2>Umidade Máxima</h2>
+                <div class="KPI-umi-max">
+                    <h1>55%</h1>
+                </div>
             </div>
-            <div class="btn-nav-white">
-                <a href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
-                    <h3>Suporte</h3>
-                </a>
-            </div>
+        </div>
 
-            <div class="btn-nav-white-M">
-                <a href="./dashboard.html">
-                    <h3>Manual de instalação</h3>
-                </a>
+        <div class="KPIS">
+            <div class="row">
+                <h2>Umidade Mínima</h2>
+                <div class="KPI-umi-min">
+                    <h1>50%</h1>
+                </div>
             </div>
-
-            <div class="btn-logout">
-                <a href="./index.html">
-                    <h3>Sair</h3>
-                </a>
+            <div class="row">
+                <h2>Temperatura Média</h2>
+                <div class="Temp-Med">
+                    <h1>23°C</h1>
+                </div>
+            </div>
+            <div class="row">
+                <h2>Umidade Média</h2>
+                <div class="Umi-Med">
+                    <h1>53%</h1>
+                </div>
             </div>
 
         </div>
 
-        <h2>Dashboard</h2>
         <br>
-        <div class="btns-dash">
-            Selecione a câmara desejada:
-            <select id="select_graficos">
-                <option value="cam1">Câmara 1</option>
-                <option value="cam2">Câmara 2</option>
-                <option value="cam3">Câmara 3</option>
-                <option value="cam4">Câmara 4</option>
-            </select>
-        </div>
         <br>
 
-        <!-- <option value="camEscolha">Escolha uma câmara</option> -->
-  
 
-        <div class="dash">
+        <div id="graficos">
+            <div>
+                <br>
+                <br>
+                <h3>Sensores de umidade e temperatura</h3>
+                <section style="width: 190%; height: 190%;">
+                    <canvas id="dht11Umidade"></canvas>
+                </section>
 
-            <div class="KPIS">
-                <div class="row">
-                    <h2>Temperatura Máxima</h2>
-                    <div class="KPI-temp-max">
-                        <h1>25°C</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <h2>Temperatura Mínima</h2>
-                    <div class="KPI-temp-min">
-                        <h1>19°C</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <h2>Umidade Máxima</h2>
-                    <div class="KPI-umi-max">
-                        <h1>55%</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="KPIS">
-                <div class="row">
-                    <h2>Umidade Mínima</h2>
-                    <div class="KPI-umi-min">
-                        <h1>50%</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <h2>Temperatura Média</h2>
-                    <div class="Temp-Med">
-                        <h1>23°C</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <h2>Umidade Média</h2>
-                    <div class="Umi-Med">
-                        <h1>53%</h1>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <br>
-            <br>
-
-
-            <div id="graficos">
-                <div>
-                    <br>
-                    <br>
-                    <h3>Sensor de Umidade</h3>
-                    <section style="width:100%; height: 450px;" >
-                        <canvas id="dht11Umidade"></canvas>
-                    </section>
-                    
-                    <!-- <h1>Sensor DHT 11 - Temperatura</h1>
+                <!-- <h1>Sensor DHT 11 - Temperatura</h1>
                     <section style="width: 100%;">
                         <canvas id="dht11Temperatura"></canvas> -->
-                   
-                    <h3>Sensor de Temperatura</h3>
+
+                <!-- <h3>Sensor de Temperatura</h3>
                     <section style="width: 100%; height: 450px;">
-                        <canvas id="lm35Temperatura"></canvas>
-                    </section>
+                        <canvas id="lm35Temperatura"></canvas> -->
+                </section>
             </div>
         </div>
-   
+
 </body>
 
 </html>
 
 <script>
-    
-     b_usuario.innerHTML = sessionStorage.NOME_USUARIO; 
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
 
@@ -164,44 +165,44 @@
         obterDadosGrafico(3)
         obterDadosGrafico(4)
     }
-/* 
-    verificar_autenticacao();
-
-     function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-    } 
-
-     function exibirAquario(idAquario) {
-        let todosOsGraficos = document.getElementById("graficos")
-
-        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+    /* 
+        verificar_autenticacao();
+    
+         function alterarTitulo(idAquario) {
+            var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+            tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+        } 
+    
+         function exibirAquario(idAquario) {
+            let todosOsGraficos = document.getElementById("graficos")
+    
+            for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+                // exibindo - ou não - o gráfico
+                let elementoAtual = document.getElementById(`grafico${i}`)
+                if (elementoAtual.classList.contains("display-block")) {
+                    elementoAtual.classList.remove("display-block")
+                }
+                elementoAtual.classList.add("display-none")
+    
+                // alterando estilo do botão
+                let btnAtual = document.getElementById(`btnAquario${i}`)
+                if (btnAtual.classList.contains("btn-pink")) {
+                    btnAtual.classList.remove("btn-pink")
+                }
+                btnAtual.classList.add("btn-white")
+            }
+    
             // exibindo - ou não - o gráfico
-            let elementoAtual = document.getElementById(`grafico${i}`)
-            if (elementoAtual.classList.contains("display-block")) {
-                elementoAtual.classList.remove("display-block")
-            }
-            elementoAtual.classList.add("display-none")
-
+            let graficoExibir = document.getElementById(`grafico${idAquario}`)
+            graficoExibir.classList.remove("display-none")
+            graficoExibir.classList.add("display-block")
+    
             // alterando estilo do botão
-            let btnAtual = document.getElementById(`btnAquario${i}`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
-            }
-            btnAtual.classList.add("btn-white")
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    } 
-  */
+            let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+            btnExibir.classList.remove("btn-white")
+            btnExibir.classList.add("btn-pink")
+        } 
+      */
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
@@ -228,7 +229,7 @@
                     resposta.reverse();
 
                     plotarGrafico(resposta, idAquario);
-                    
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -256,17 +257,18 @@
                 label: 'Umidade',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                borderColor: 'rgb(0,0,1)',
                 tension: 0.1
             },
-            /* {
+            {
                 label: 'Temperatura',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                borderColor: 'rgb(100, 0, 0)',
                 tension: 0.1
-            } */
-        ]
+
+            }
+            ]
         };
 
         console.log('----------------------------------------------')
@@ -278,7 +280,7 @@
             var registro = resposta[i];
             labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.umidade);
-           /*  dados.datasets[1].data.push(registro.temperatura); */
+            dados.datasets[1].data.push(registro.temperatura);
         }
 
         console.log('----------------------------------------------')
@@ -301,7 +303,7 @@
             config
         );
 
-         setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000); 
+        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 
@@ -317,13 +319,13 @@
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-
+                    // davi descomentei obter dados e alert
                     /* obterdados(idAquario); */
-                    // alertar(novoRegistro, idAquario);
+                    alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
-
+                    //  davi descomentei o let avisoCaptura
                     /* let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                     avisoCaptura.innerHTML = "" */
 
@@ -331,7 +333,8 @@
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                      /*   avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará." */
+                        //   descomentei o avisoCaptura
+                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].momento_grafico)
                         console.log("Horário do último dado capturado:")
@@ -344,8 +347,8 @@
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        /* dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        // davi descomentando dados,datasets
+                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                         dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura */
 
                         myChart.update();
