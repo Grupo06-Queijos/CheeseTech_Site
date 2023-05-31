@@ -36,6 +36,8 @@ function buscarMedidasEmTempoReal(idAquario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
+        // top 1? ta certo isso? mudar para select sem "top 1"
+        
         instrucaoSql = `select top 1
         Temperatura as temperatura, 
         Umidade as umidade,  

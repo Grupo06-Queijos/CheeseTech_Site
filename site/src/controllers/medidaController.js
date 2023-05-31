@@ -11,6 +11,7 @@ function buscarUltimasMedidas(req, res) {
     medidaModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
+            // console.log('isso aqui ta funcionando, aparece no console by davi')
         } else {
             res.status(204).send("Nenhum resultado encontrado!")
         }
