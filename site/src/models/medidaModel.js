@@ -13,6 +13,16 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     from Registro_Sensor
                     where fkSensor = ${idAquario}
                     order by idRegistro desc`;
+
+                    /*TENTAR ISSO TBM
+        /*SELECT Temperatura as temperatura, 
+           Umidade as umidade,  
+           Data_Hora, 
+           DATE_FORMAT(Data_Hora, '%H:%i:%s') as momento_grafico
+            FROM Registro_Sensor
+        WHERE fkSensor = ${idAquario}
+        ORDER BY idRegistro DESC
+        LIMIT ${limite_linhas} */
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         Temperatura as temperatura, 
@@ -22,6 +32,8 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     from  Registro_Sensor
                     where fkSensor = ${idAquario}
                     order by idRegistro desc limit ${limite_linhas}`;
+
+            //esse select nao executa no sql
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -37,18 +49,36 @@ function buscarMedidasEmTempoReal(idAquario) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         // top 1? ta certo isso? mudar para select sem "top 1"
-        
-        instrucaoSql = `select top 1
-        Temperatura as temperatura, 
-        Umidade as umidade,  
-                        CONVERT(varchar, Data_Hora, 108) as momento_grafico, 
-                        fkSensor
-                        from Registro_Sensor where fkSensor = ${idAquario} 
-                    order by idRegistro desc`;
+        //tentar fazer esse select funcionar , talvez o problema esteja nele
+        instrucaoSql = `SELECT TOP 1
+        Temperatura,
+        Umidade,
+        CONVERT(varchar, Data_Hora, 108) AS momento_grafico,  
+        fkSensor
+        FROM Registro_Sensor
+        WHERE fkSensor = ${idAquario}
+        ORDER BY idRegistro DESC;`;
+
+        //Unico que funciona no sql
+        /* SELECT Temperatura, Umidade, 
+        DATE_FORMAT(Data_Hora, '%H:%i:%s') AS momento_grafico, fkSensor
+        FROM Registro_Sensor
+        WHERE fkSensor = 1
+        ORDER BY idRegistro DESC
+        LIMIT 1;*/
+
+        /* select antigo: 
+        `select top 1
+         dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc` */
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT * FROM Queijo_Metricas where idQueijo_metrica = ${idAquario}`;
-            
+
         // `select 
         // dht11_temperatura as temperatura, 
         // dht11_umidade as umidade,
@@ -57,7 +87,7 @@ function buscarMedidasEmTempoReal(idAquario) {
         //                 from medida where fk_aquario = ${idAquario} 
         //             order by id desc limit 1`;
 
-        
+
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

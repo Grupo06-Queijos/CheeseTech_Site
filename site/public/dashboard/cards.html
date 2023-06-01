@@ -110,13 +110,13 @@ function atualizacaoPeriodica() {
         obterdados(4);
 // isso aqui era pra ta comentado? acho que é esse código que ta fazendo não atualizar sem f5
 // descomentei linha 113~117
-        /* setTimeout(atualizacaoPeriodica, 5000); */
-    // obterdados(1);
-    // obterdados(2);
-    // obterdados(3);
-    // obterdados(4);
+        /*  setTimeout(atualizacaoPeriodica, 5000); 
+     obterdados(1);
+     obterdados(2);
+    obterdados(3);
+     obterdados(4); */
 //  testar isso amn 
-    function sendData() {
+   /*  function sendData() {
         var http = new XMLHttpRequest();
         http.open('POST', 'http://localhost:3000/api/sendData', false);
         // isso aqui na linha 120 é falso? não era pra ser true?
@@ -125,11 +125,11 @@ function atualizacaoPeriodica() {
 
     setInterval(() => {
         sendData();
-    }, 2000);
+    }, 2000); */
     setTimeout(atualizacaoPeriodica, 5000);
 }
 
-function obterdados(idAquario) {
+/* function obterdados(idAquario) {
     fetch(`/medidas/tempo-real/${idAquario}`)
         .then(resposta => {
 
@@ -153,7 +153,7 @@ function obterdados(idAquario) {
             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
         });
 
-}
+} */
 
 // // function alertar(temperatura, idAquario) {
 // //     var limites = {
