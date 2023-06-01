@@ -24,6 +24,7 @@ function listar(req, res) {
         );
 }
 
+
 function entrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;

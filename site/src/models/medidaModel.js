@@ -105,9 +105,52 @@ function buscarMedidasEmTempoReal(idAquario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+// função criada pelo davi copiando a função buscarUltimasMedidas
+function calcularMedidas(idAquario, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select 
+        avg(Temperatura) as 'medTemp', 
+        avg(Umidade) as 'medUmi',
+        max(Temperatura) as 'maiorTemp',
+        min(Temperatura) as 'menorTemp',
+        max(Umidade) as 'maiorUmi,
+        min(Umidade) as'menorUmi'
+                    from Registro_Sensor
+                     WHERE fkSensor = ${idAquario}
+			ORDER BY idRegistro DESC
+			LIMIT ${limite_linhas}`;
+
+             
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select 
+        avg(Temperatura) as 'medTemp', 
+        avg(Umidade) as 'medUmi',
+        max(Temperatura) as 'maiorTemp',
+        min(Temperatura) as 'menorTemp',
+        max(Umidade) as 'maiorUmi',
+        min(Umidade) as'menorUmi'
+                    from Registro_Sensor
+                     WHERE fkSensor = ${idAquario}
+			ORDER BY idRegistro DESC
+			LIMIT ${limite_linhas}`;
+
+            //esse select nao executa no sql
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    calcularMedidas
 }

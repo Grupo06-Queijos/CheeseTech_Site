@@ -87,6 +87,7 @@ function alertar(resposta, idAquario) {
 
     // card.className = classe_temperatura;
 }
+//  início das mensagens pop-up de alerta do danilo
 
 function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
     var indice = alertas.findIndex(item => item.idAquario == idAquario);

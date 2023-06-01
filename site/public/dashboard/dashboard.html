@@ -20,7 +20,7 @@
 </head>
 <!-- da onde vem o atualizar freed e atualizaçaoPeriodica? -->
 
-<body onload="atualizarFeed(), atualizacaoPeriodica()">
+<body onload="atualizarFeed(), calcularMedidas(), atualizacaoPeriodica()">
 
     <div class="header-left">
         <h1>CheeseTech</h1>
@@ -112,13 +112,13 @@
             <div class="row">
                 <h2>Temperatura Média</h2>
                 <div class="Temp-Med">
-                    <h1 id="TempMed">23°C</h1>
+                    <h1 id="TempMed">°C</h1>
                 </div>
             </div>
             <div class="row">
                 <h2>Umidade Média</h2>
                 <div class="Umi-Med">
-                    <h1 id="UmMed">53%</h1>
+                    <h1 id="UmMed">%</h1>
                 </div>
             </div>
 
@@ -160,44 +160,7 @@
         obterDadosGrafico(3)
         obterDadosGrafico(4)
     }
-    /* 
-        verificar_autenticacao();
-    
-         function alterarTitulo(idAquario) {
-            var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-            tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-        } 
-    
-         function exibirAquario(idAquario) {
-            let todosOsGraficos = document.getElementById("graficos")
-    
-            for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
-                // exibindo - ou não - o gráfico
-                let elementoAtual = document.getElementById(`grafico${i}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-    
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${i}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-    
-            // exibindo - ou não - o gráfico
-            let graficoExibir = document.getElementById(`grafico${idAquario}`)
-            graficoExibir.classList.remove("display-none")
-            graficoExibir.classList.add("display-block")
-    
-            // alterando estilo do botão
-            let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-            btnExibir.classList.remove("btn-white")
-            btnExibir.classList.add("btn-pink")
-        } 
-      */
+  
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
@@ -211,6 +174,25 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function obterDadosGrafico(idAquario) {
 
+        /* function calcularMedidas(idAquario) {
+            fetch(`/medidas/calcularMedidas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    var dados_recebidos = resposta[0] 
+                    console.log(resposta)
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+        } */
         /* alterarTitulo(idAquario) */
 
         if (proximaAtualizacao != undefined) {
@@ -220,10 +202,13 @@
         fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
+
+                    // var dados_recebidos = resposta[0]
+
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta);
 
                 });
             } else {
@@ -238,7 +223,19 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    
+    /* function atualizarKPI(resposta, idAquario) {
+        
+        UmMed.innerHTML = dados_recebidos.medUmi
+        TempMed.innerHTML = dados_recebidos.medTemp
+        TempMax.innerHTML = dados_recebidos.maiorTemp
+        UmMax.innerHTML = dados_recebidos.maiorUmi
+        UmMin.innerHTML = dados_recebidos.menorUmi
+        TempMin.innerHTML = dados_recebidos.menorTemp
+    } */
     function plotarGrafico(resposta, idAquario) {
+    
+
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -277,7 +274,7 @@
             dados.datasets[0].data.push(registro.umidade);
             dados.datasets[1].data.push(registro.temperatura);
         }
-
+        
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
@@ -300,7 +297,7 @@
 
         setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
-
+   
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas, 
@@ -311,14 +308,11 @@
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-                    // descomentei a linha 322 -davi
-                    // na duvida comentar a 316 
                     /* obterdados(idAquario); */
                     // alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
-                    // inutil mesmo, não precisa descomentar
                     /* let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                     avisoCaptura.innerHTML = "" */
 
@@ -347,12 +341,18 @@
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => {
+                        atualizarGrafico(idAquario, dados, myChart)
+                        calcularMedidas(idAquario, dados_recebidos)
+                    }, 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => {
+                    atualizarGrafico(idAquario, dados, myChart)
+                    calcularMedidas(idAquario, dados_recebidos)
+                }, 2000);
             }
         })
             .catch(function (error) {
