@@ -77,7 +77,16 @@ function buscarMedidasEmTempoReal(idAquario) {
                     order by id desc` */
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM Queijo_Metricas where idQueijo_metrica = ${idAquario}`;
+        instrucaoSql = `select 
+        Temperatura as temperatura, 
+        Umidade as umidade,
+                        DATE_FORMAT(Data_Hora,'%H:%i:%s') as momento_grafico, 
+                     fkSensor 
+             from Registro_Sensor where fkSensor = ${idAquario} 
+                   order by idRegistro desc limit 1`;
+
+
+        /* `SELECT * FROM Queijo_Metricas where idQueijo_metrica = ${idAquario}`; */
 
         // `select 
         // dht11_temperatura as temperatura, 

@@ -149,7 +149,7 @@
 <script>
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+    
     let proximaAtualizacao;
 
     window.onload = obterDadosGraficos();
@@ -308,14 +308,12 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
                     // descomentei a linha 322 -davi
-                    obterdados(idAquario);
+                    // na duvida comentar a 316 
+                    /* obterdados(idAquario); */
                     // alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
