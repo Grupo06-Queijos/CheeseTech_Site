@@ -20,7 +20,8 @@
 </head>
 
 <!-- <body onload="validarSessao(), atualizacaoPeriodica()"> -->
-    <body onload="atualizacaoPeriodica()">
+
+<body onload="cards()">
     <div class="header-left dash-header">
 
         <h1>CheeseTech</h1>
@@ -42,15 +43,16 @@
         </div>
 
         <div class="btn-nav-white">
-            <a href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
+            <a
+                href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
                 <h3>Suporte</h3>
             </a>
         </div>
 
-        <div class="btn-logout" >
+        <div class="btn-logout">
             <a href="./index.html">
-            <h3>Sair</h3>
-        </a>
+                <h3>Sair</h3>
+            </a>
         </div>
     </div>
     <div class="dash">
@@ -84,14 +86,16 @@
         </div>
         <div class="cards">
             <div class="card">
-                <h1>Média geral da temperatura:<p id="temperatura_geral">10.5°C</p></h1>
+                <h1>Média geral da temperatura:<p id="temperatura_geralN">10.5°C</p>
+                </h1>
                 <div class="temperatura">
                     <p id="temperatura_geral">Alerta câmara 2</p>
                 </div>
                 <div class="cor-alerta" id="card_1"></div>
             </div>
             <div class="card-umidade">
-                <h1>Média geral da umidade:<p id="umidade_geral">83%</p></h1>
+                <h1>Média geral da umidade:<p id="umidade_geralN">83%</p>
+                </h1>
                 <div class="temperatura">
                     <p id="umidade_geral">Nenhum problema</p>
                 </div>
@@ -102,112 +106,71 @@
 
 </body>
 <script>
+    window.onload = cards()
+   
+    function cards() {
+        var UMedCard = localStorage.getItem("umidadeMedia")
+        var TempMedCard = localStorage.getItem("temperaturaMedia")
+        var temperaturaCard = localStorage.getItem("temperaturaCard1")
+        var umidadeCard = localStorage.getItem("umidadeCard1")
 
-function atualizacaoPeriodica() {
-    obterdados(1);
-        obterdados(2);
-        obterdados(3);
-        obterdados(4);
-// isso aqui era pra ta comentado? acho que é esse código que ta fazendo não atualizar sem f5
-// descomentei linha 113~117
-        /*  setTimeout(atualizacaoPeriodica, 5000); 
-     obterdados(1);
-     obterdados(2);
-    obterdados(3);
-     obterdados(4); */
-//  testar isso amn 
-   /*  function sendData() {
-        var http = new XMLHttpRequest();
-        http.open('POST', 'http://localhost:3000/api/sendData', false);
-        // isso aqui na linha 120 é falso? não era pra ser true?
-        http.   send(null);
-    }
 
-    setInterval(() => {
-        sendData();
-    }, 2000); */
-    setTimeout(atualizacaoPeriodica, 5000);
-}
+        var camara = 1 
 
- function obterdados(idAquario) {
-    fetch(`/medidas/tempo-real/${idAquario}`)
-        .then(resposta => {
-
-            if (resposta.ok) {
-                resposta.json().then(resposta => {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    var dados = {
-                        temperatura: resposta[0].temperatura,
-                    }
-
-                    alertar(resposta[0].temperatura, idAquario);
-                });
-            } else {
-
-                console.error('Nenhum dado encontrado ou erro na API');
+        if (temperaturaCard >= 7 && temperaturaCard <= 8) {
+            temperatura_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+            temperatura_geralN.innerHTML = `<p style = 'color: green;'>${TempMedCard}°C</p>`
+        } else {
+            
+            if (temperaturaCard <= 4) {
+                temperatura_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: darkblue;'>${TempMedCard}°C</p>`
             }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-        });
 
-} 
+            if (temperaturaCard > 4 && temperaturaCard <= 6) {
+                temperatura_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: blue;'>${TempMedCard}°C</p>`
+            }
 
-// // function alertar(temperatura, idAquario) {
-// //     var limites = {
-// //         muito_quente: 23,
-// //         quente: 22,
-// //         ideal: 20,
-// //         frio: 10,
-// //         muito_frio: 5
-// //     };
+            if (temperaturaCard > 8 && temperaturaCard <= 9) {
+                temperatura_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: yellow;'>${TempMedCard}°C</p>`
+            }
 
-// //     var classe_temperatura = 'cor-alerta';
+            if (temperaturaCard > 9 ) {
+                temperatura_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: red;'>${TempMedCard}°C</p>`
+            }
+        }
 
-// //     if (temperatura >= limites.muito_quente) {
-// //         classe_temperatura = 'cor-alerta perigo-quente';
-// //         console.log("caiu no 1")
-// //     }
-// //     else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-// //         classe_temperatura = 'cor-alerta alerta-quente';
-// //         console.log("caiu no 2")
-// //     }
-// //     else if (temperatura < limites.quente && temperatura > limites.frio) {
-// //         classe_temperatura = 'cor-alerta ideal';
-// //         console.log("caiu no 3")
-// //     }
-// //     else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-// //         classe_temperatura = 'cor-alerta alerta-frio';
-// //         console.log("caiu no 4")
-// //     }
-// //     else if (temperatura < limites.min_temperatura) {
-// //         classe_temperatura = 'cor-alerta perigo-frio';
-// //         console.log("caiu no 5")
-// //     }
+        if (umidadeCard >= 83 && umidadeCard <= 84) {
+            umidade_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+            umidade_geralN.innerHTML = `<p style = 'color: green;'>${UMedCard}%</p>`
+        } else {
+            
+            if (umidadeCard <= 78) {
+                umidade_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: darkblue;'>${UMedCard}%</p>`
+            }
 
-// //     var card;
+            if (umidadeCard > 78 && umidadeCard <= 79) {
+                umidade_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: blue;'>${UMedCard}%</p>`
+            }
 
-// //     // if (idAquario == 1) {
-// //     //     // temp_aquario_1.innerHTML = temperatura + "°C";
-// //     //     card = card_1
-// //     // } else if (idAquario == 2) {
-// //     //     // temp_aquario_2.innerHTML = temperatura + "°C";
-// //     //     card = card_2
-// //     // } else if (idAquario == 3) {
-// //     //     // temp_aquario_3.innerHTML = temperatura + "°C";
-// //     //     card = card_3
-// //     // } else if (idAquario == 4) {
-// //     //     // temp_aquario_4.innerHTML = temperatura + "°C";
-// //     //     card = card_4
-// //     // }
+            if (umidadeCard > 84 && umidadeCard <= 85) {
+                umidade_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: yellow;'>${UMedCard}%</p>`
+            }
 
-// //     // alterando
-// //     // card.className = classe_temperatura;    
-
-// // }
-
+            if (umidadeCard > 85 ) {
+                umidade_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: red;'>${UMedCard.tofixed}%</p>`
+            }
+        }
+    }
+    setInterval(function(){ 
+        cards()
+  }, 2000);
 </script>
-
 </html>

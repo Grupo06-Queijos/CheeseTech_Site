@@ -85,19 +85,19 @@
             <div class="row">
                 <h2>Temperatura Máxima</h2>
                 <div class="KPI-temp-max">
-                    <h1 id="TempMax">25°C</h1>
+                    <h1 id="TempMax"></h1>
                 </div>
             </div>
             <div class="row">
                 <h2>Temperatura Mínima</h2>
                 <div class="KPI-temp-min">
-                    <h1 id="TempMin">19°C</h1>
+                    <h1 id="TempMin"></h1>
                 </div>
             </div>
             <div class="row">
                 <h2>Umidade Máxima</h2>
                 <div class="KPI-umi-max">
-                    <h1 id="UmMax">55%</h1>
+                    <h1 id="UmMax"></h1>
                 </div>
             </div>
         </div>
@@ -106,19 +106,19 @@
             <div class="row">
                 <h2>Umidade Mínima</h2>
                 <div class="KPI-umi-min">
-                    <h1 id="UmMin">50%</h1>
+                    <h1 id="UmMin"></h1>
                 </div>
             </div>
             <div class="row">
                 <h2>Temperatura Média</h2>
                 <div class="Temp-Med">
-                    <h1 id="TempMed">°C</h1>
+                    <h1 id="TempMed"></h1>
                 </div>
             </div>
             <div class="row">
                 <h2>Umidade Média</h2>
                 <div class="Umi-Med">
-                    <h1 id="UmMed">%</h1>
+                    <h1 id="UmMed"></h1>
                 </div>
             </div>
 
@@ -154,6 +154,7 @@
 
     window.onload = obterDadosGraficos();
     window.onload = calcularMedidas();
+
     function obterDadosGraficos() {
         obterDadosGrafico(1)
         obterDadosGrafico(2)
@@ -240,8 +241,6 @@
 
     }
     function alertar(VARTempMed, VARUmiMed, VARTempMax, VARTempMin, VARUmiMax, VARUmiMin) {
-        
-
 
             UmMed.innerHTML = VARUmiMed.toFixed(2)
             TempMed.innerHTML = VARTempMed.toFixed(2)
@@ -249,9 +248,11 @@
             UmMax.innerHTML = VARUmiMax
             UmMin.innerHTML = VARUmiMin
             TempMin.innerHTML = VARTempMin
-        
 
+            localStorage.setItem("umidadeMedia",VARUmiMed)
+            localStorage.setItem("temperaturaMedia",VARTempMed)
     }
+
 
    
 
@@ -329,6 +330,12 @@
             labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.umidade);
             dados.datasets[1].data.push(registro.temperatura);
+
+            var temperaturaCard = registro.temperatura
+            var umidadeCard = registro.umidade
+            localStorage.setItem("temperaturaCard1",temperaturaCard)
+            localStorage.setItem("umidadeCardCard1",umidadeCard)
+
         }
 
         console.log('----------------------------------------------')
