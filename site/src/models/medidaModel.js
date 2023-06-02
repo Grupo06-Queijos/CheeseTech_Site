@@ -84,19 +84,11 @@ function buscarMedidasEmTempoReal(idAquario) {
         Umidade as umidade,
                         DATE_FORMAT(Data_Hora,'%H:%i:%s') as momento_grafico, 
                      fkSensor 
-             from Registro_Sensor where fkSensor = ${idAquario} 
+             from Registro_Sensor where fkSensor = 1 
                    order by idRegistro desc limit 1`;
+// 1 no lugar do idaquario  e limite 7 buscarmedidasemtemporeal
 
-
-        /* `SELECT * FROM Queijo_Metricas where idQueijo_metrica = ${idAquario}`; */
-
-        // `select 
-        // dht11_temperatura as temperatura, 
-        // dht11_umidade as umidade,
-        //                 DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-        //                 fk_aquario 
-        //                 from medida where fk_aquario = ${idAquario} 
-        //             order by id desc limit 1`;
+       
 
 
     } else {
@@ -108,25 +100,8 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 // função criada pelo davi copiando a função buscarUltimasMedidas
-function calcularMedidas(idAquario, limite_linhas) {
-
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select 
-        avg(Temperatura) as 'medTemp', 
-        avg(Umidade) as 'medUmi',
-        max(Temperatura) as 'maiorTemp',
-        min(Temperatura) as 'menorTemp',
-        max(Umidade) as 'maiorUmi,
-        min(Umidade) as'menorUmi'
-                    from Registro_Sensor
-                     WHERE fkSensor = ${idAquario}
-			ORDER BY idRegistro DESC
-			LIMIT ${limite_linhas}`;
-
-             
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+function calcularMedidas() {
+    
         instrucaoSql = `select 
         avg(Temperatura) as 'medTemp', 
         avg(Umidade) as 'medUmi',
@@ -135,19 +110,16 @@ function calcularMedidas(idAquario, limite_linhas) {
         max(Umidade) as 'maiorUmi',
         min(Umidade) as'menorUmi'
                     from Registro_Sensor
-                     WHERE fkSensor = ${idAquario}
+                     WHERE fkSensor = 1
 			ORDER BY idRegistro DESC
-			LIMIT ${limite_linhas}`;
+			LIMIT 7`;
 
-            //esse select nao executa no sql
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
+           
+            console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            return database.executar(instrucaoSql);
     }
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
+   
 
 
 

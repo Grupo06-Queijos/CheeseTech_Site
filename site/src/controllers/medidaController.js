@@ -45,11 +45,9 @@ function buscarMedidasEmTempoReal(req, res) {
 
 function calcularMedidas(req, res) {
 
-    var idAquario = req.params.idAquario;
-
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.calcularMedidas(idAquario).then(function (resultado) {
+    medidaModel.calcularMedidas().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
