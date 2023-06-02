@@ -24,6 +24,8 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
         ORDER BY idRegistro DESC
         LIMIT ${limite_linhas} */
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        const limite_linhas = 7
+        const idAquario = 1 
         instrucaoSql = `select 
         Temperatura as temperatura, 
         Umidade as umidade,
@@ -154,3 +156,4 @@ module.exports = {
     buscarMedidasEmTempoReal,
     calcularMedidas
 }
+
