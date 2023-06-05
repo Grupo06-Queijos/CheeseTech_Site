@@ -28,7 +28,7 @@
         <img src="../assets/img/logo2.png" width="150px" height="150px">
 
         <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <h3>Olá, <span id="b_usuario"></span>!</h3>
         </div>
 
         <div class="btn-nav-white">
@@ -50,7 +50,7 @@
         </div>
 
         <div class="btn-nav-white-M">
-            <a href="./dashboard.html">
+            <a href="../Manual de instalação.rar">
                 <h3>Manual de instalação</h3>
             </a>
         </div>
@@ -148,8 +148,8 @@
 </html>
 <script>
    
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+    b_usuario.innerHTML = sessionStorage.NOME;
+    
      let proximaAtualizacao;
 
     window.onload = obterDadosGraficos();
@@ -241,10 +241,9 @@
 
     }
     function alertar(VARTempMed, VARUmiMed, VARTempMax, VARTempMin, VARUmiMax, VARUmiMin) {
-            //VARTempMed.toFixed(2)
-            //VARUmiMed.toFixed(2)
-            UmMed.innerHTML = VARUmiMed
-            TempMed.innerHTML = VARTempMeds
+           
+            UmMed.innerHTML = VARUmiMed.toFixed(2)
+            TempMed.innerHTML = VARTempMed.toFixed(2)
             TempMax.innerHTML = VARTempMax
             UmMax.innerHTML = VARUmiMax
             UmMin.innerHTML = VARUmiMin

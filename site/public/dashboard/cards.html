@@ -29,7 +29,7 @@
         <img src="../assets/img/logo2.png" width="150px" height="150px">
 
         <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <h3>Olá, Seja bem-vindo!</h3>
         </div>
 
         <div class="btn-nav">
@@ -50,7 +50,7 @@
         </div>
 
         <div class="btn-nav-white-M">
-            <a href="./dashboard.html">
+            <a href="../Manual de instalação.rar">
                 <h3>Manual de instalação</h3>
             </a>
         </div>
@@ -122,8 +122,8 @@
     var tipo = queijo_parametros.value
 
     function cards() {
-        var UMedCard = localStorage.getItem("umidadeMedia")
-        var TempMedCard = localStorage.getItem("temperaturaMedia")
+        var UMedCard = parseInt(localStorage.getItem("umidadeMedia"))
+        var TempMedCard = parseInt(localStorage.getItem("temperaturaMedia"))
         var temperaturaCard = localStorage.getItem("temperaturaCard1")
         var umidadeCard = localStorage.getItem("umidadeCard1")
 
@@ -147,6 +147,9 @@
 
             vermelho1.innerHTML = '10°C'
             vermelho2.innerHTML = '59%'
+
+            var temperaturaCard = temperaturaCard - 20
+            var umidadeCard = umidadeCard + 55
 
             if (temperaturaCard >= 7 && temperaturaCard < 9) {
 
@@ -219,6 +222,9 @@
 
             vermelho1.innerHTML = '19°C'
             vermelho2.innerHTML = '94%'
+
+            var temperaturaCard = temperaturaCard - 6
+            var umidadeCard = umidadeCard + 80
 
             if (temperaturaCard >= 7 && temperaturaCard < 15) {
 

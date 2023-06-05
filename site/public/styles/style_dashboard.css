@@ -1,5 +1,8 @@
 /* PAGINA DOS GRÁFICOS */
 
+body{
+  overflow-x: hidden;
+}
 
 * {
   font-family: 'Poppins';
