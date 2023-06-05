@@ -14,18 +14,18 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     where fkSensor = ${idAquario}
                     order by idRegistro desc`;
 
-                    /*TENTAR ISSO TBM
-        /*SELECT Temperatura as temperatura, 
-           Umidade as umidade,  
-           Data_Hora, 
-           DATE_FORMAT(Data_Hora, '%H:%i:%s') as momento_grafico
-            FROM Registro_Sensor
-        WHERE fkSensor = ${idAquario}
-        ORDER BY idRegistro DESC
-        LIMIT ${limite_linhas} */
+        /*TENTAR ISSO TBM
+/*SELECT Temperatura as temperatura, 
+Umidade as umidade,  
+Data_Hora, 
+DATE_FORMAT(Data_Hora, '%H:%i:%s') as momento_grafico
+FROM Registro_Sensor
+WHERE fkSensor = ${idAquario}
+ORDER BY idRegistro DESC
+LIMIT ${limite_linhas} */
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         const limite_linhas = 7
-        const idAquario = 1 
+        const idAquario = 1
         instrucaoSql = `select 
         Temperatura as temperatura, 
         Umidade as umidade,
@@ -35,7 +35,7 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     where fkSensor = ${idAquario}
                     order by idRegistro desc limit ${limite_linhas}`;
 
-            //esse select nao executa no sql
+        //esse select nao executa no sql
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -86,9 +86,9 @@ function buscarMedidasEmTempoReal(idAquario) {
                      fkSensor 
              from Registro_Sensor where fkSensor = 1 
                    order by idRegistro desc limit 1`;
-// 1 no lugar do idaquario  e limite 7 buscarmedidasemtemporeal
+        // 1 no lugar do idaquario  e limite 7 buscarmedidasemtemporeal
 
-       
+
 
 
     } else {
@@ -101,8 +101,44 @@ function buscarMedidasEmTempoReal(idAquario) {
 }
 // função criada pelo davi copiando a função buscarUltimasMedidas
 function calcularMedidas() {
-    
-        instrucaoSql = `select 
+
+    instrucaoSql = `SELECT 
+        ROUND(AVG(Temperatura), 2) AS 'mediaTemperatura', 
+        ROUND(AVG(Umidade), 2) AS 'mediaUmidade',
+        MAX(Temperatura) AS 'maiorTemperatura',
+        MIN(Temperatura) AS 'menorTemperatura',
+        MAX(Umidade) AS 'maiorUmidade',
+        MIN(Umidade) AS 'menorUmidade'
+        FROM 
+        Registro_Sensor
+        WHERE 
+        fkSensor = 1
+        ORDER BY 
+        idRegistro DESC
+    LIMIT 7`;
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+/*  SELECT 
+ ROUND(AVG(Temperatura), 2) AS 'mediaTemperatura', 
+ ROUND(AVG(Umidade), 2) AS 'mediaUmidade',
+ MAX(Temperatura) AS 'maiorTemperatura',
+ MIN(Temperatura) AS 'menorTemperatura',
+ MAX(Umidade) AS 'maiorUmidade',
+ MIN(Umidade) AS 'menorUmidade'
+ FROM 
+ Registro_Sensor
+ WHERE 
+ fkSensor = 1
+ ORDER BY 
+ idRegistro DESC
+LIMIT 7; */
+
+/* 
+select 
         avg(Temperatura) as 'medTemp', 
         avg(Umidade) as 'medUmi',
         max(Temperatura) as 'maiorTemp',
@@ -111,15 +147,9 @@ function calcularMedidas() {
         min(Umidade) as'menorUmi'
                     from Registro_Sensor
                      WHERE fkSensor = 1
-			ORDER BY idRegistro DESC
-			LIMIT 7`;
+            ORDER BY idRegistro DESC
+            LIMIT 7 */
 
-           
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
-    }
-
-   
 
 
 

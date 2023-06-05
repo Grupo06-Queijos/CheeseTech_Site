@@ -80,6 +80,23 @@
   margin: 0;
   font-size: 15px;
 }
+.btn-nav-white-M{
+  width: 50%;
+  height: 30px;
+  background-color: white;
+  border: 3px solid #dd9e34;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white-M h3{
+  color: #dd9e34;
+  padding: 0;
+  margin: 0;
+  font-size: 13.8px;
+  
+}
 
 .btn-logout h3 {
   color: #dd9e34;
@@ -158,10 +175,9 @@
   flex-wrap: wrap;
   justify-content: center;
   height: 450px;
-  width: 80%;
+  width: 100%;
   align-items: center;
   color: white;
-  margin-left: -20px;
 }
 
 .card {

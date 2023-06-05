@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/style_dashboard.css">
     <script src="../js/funcoes.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="./assets/img/logo2.png">
+    <link rel="icon" href="/public/assets/img/logo2.png">
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -44,7 +44,7 @@
         </div>
         <div class="btn-nav-white">
             <a
-                href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
+                href="../index.html#sessao4">
                 <h3>Suporte</h3>
             </a>
         </div>
@@ -241,9 +241,10 @@
 
     }
     function alertar(VARTempMed, VARUmiMed, VARTempMax, VARTempMin, VARUmiMax, VARUmiMin) {
-
-            UmMed.innerHTML = VARUmiMed.toFixed(2)
-            TempMed.innerHTML = VARTempMed.toFixed(2)
+            //VARTempMed.toFixed(2)
+            //VARUmiMed.toFixed(2)
+            UmMed.innerHTML = VARUmiMed
+            TempMed.innerHTML = VARTempMeds
             TempMax.innerHTML = VARTempMax
             UmMax.innerHTML = VARUmiMax
             UmMin.innerHTML = VARUmiMin
@@ -358,7 +359,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 4000);
     }
 
 
@@ -407,7 +408,7 @@
                     proximaAtualizacao = setTimeout(() => {
                         atualizarGrafico(idAquario, dados, myChart)
                          calcularMedidas()
-                    }, 2000);
+                    }, 4000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -415,7 +416,7 @@
                 proximaAtualizacao = setTimeout(() => {
                     atualizarGrafico(idAquario, dados, myChart)
                      calcularMedidas() 
-                }, 2000);
+                }, 4000);
             }
         })
             .catch(function (error) {

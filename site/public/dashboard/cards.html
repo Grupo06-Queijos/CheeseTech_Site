@@ -2,14 +2,14 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+   
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cheese Tech | Tempo Real</title>
 
     <link rel="stylesheet" href="../styles/cards.css">
-    <link rel="icon" href="./assets/img/logo2.png">
+    <link rel="icon" href="/public/assets/img/logo2.png"> 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="../js/funcoes.js"></script>
     <script src="./alerta.js"></script>
@@ -44,11 +44,16 @@
 
         <div class="btn-nav-white">
             <a
-                href="https://www.freshworks.com/br/freshdesk/lp/software-de-suporte-ao-cliente-bex/?tactic_id=4669356&utm_source=google-adwords&utm_medium=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_campaign=FD-Search-Brand%2BRLSA-L-LATAM-Brazil&utm_term=freshdesk&device=c&matchtype=e&network=g&gclid=EAIaIQobChMI_ZrDo96a_wIVVzHUAR3aegIlEAAYASAAEgI9ZvD_BwE&audience=aud-905445470605%3Akwd-30002131023&ad_id=540088767090">
+            href="../index.html#sessao4">
                 <h3>Suporte</h3>
             </a>
         </div>
 
+        <div class="btn-nav-white-M">
+            <a href="./dashboard.html">
+                <h3>Manual de instalação</h3>
+            </a>
+        </div>
         <div class="btn-logout">
             <a href="./index.html">
                 <h3>Sair</h3>
@@ -56,32 +61,38 @@
         </div>
     </div>
     <div class="dash">
+        <br><div id="seletar">Veja os parâmetros de cada tipo de queijo:
+        <select name="tipos" id="queijo_parametros">
+            <option value="Mussarela">Mussarela</option>
+            <option value="Prato">Prato</option>
+            <option value="Canastra">Canastra</option>
+        </select></div>
         <div id="alerta"></div>
         <div class="regua">
             <div class="item-regua perigo-frio">
                 <h4>Crítico</h4>
-                <h2>4°C</h2>
-                <h2>78%</h2>
+                <h2 id="roxo1">4°C</h2>
+                <h2 id="roxo2">78%</h2>
             </div>
             <div class="item-regua alerta-frio">
                 <h4>Emergência</h4>
-                <h2>6°C</h2>
-                <h2>79%</h2>
+                <h2 id="azul1">6°C</h2>
+                <h2 id="azul2">79%</h2>
             </div>
             <div class="item-regua ideal">
                 <h4>Ideal</h4>
-                <h2>7/8°C</h2>
-                <h2>83%/84%</h2>
+                <h2 id="verde1">7/8°C</h2>
+                <h2 id="verde2">83%/84%</h2>
             </div>
             <div class="item-regua alerta-quente">
                 <h4>Emergência</h4>
-                <h2>9°C</h2>
-                <h2>85%</h2>
+                <h2 id="amarelo1">9°C</h2>
+                <h2 id="amarelo2">85%</h2>
             </div>
             <div class="item-regua perigo-quente">
                 <h4>Crítico</h4>
-                <h2>10°C</h2>
-                <h2>87%</h2>
+                <h2 id="vermelho1">10°C</h2>
+                <h2 id="vermelho2">87%</h2>
             </div>
         </div>
         <div class="cards">
@@ -106,71 +117,241 @@
 
 </body>
 <script>
+
     window.onload = cards()
-   
+    var tipo = queijo_parametros.value
+
     function cards() {
         var UMedCard = localStorage.getItem("umidadeMedia")
         var TempMedCard = localStorage.getItem("temperaturaMedia")
         var temperaturaCard = localStorage.getItem("temperaturaCard1")
         var umidadeCard = localStorage.getItem("umidadeCard1")
 
+        var tipo = queijo_parametros.value
 
-        var camara = 1 
+        var camara = 1
 
-        if (temperaturaCard >= 7 && temperaturaCard <= 8) {
-            temperatura_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
-            temperatura_geralN.innerHTML = `<p style = 'color: green;'>${TempMedCard}°C</p>`
-        } else {
-            
-            if (temperaturaCard <= 4) {
-                temperatura_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
-                temperatura_geralN.innerHTML = `<p style = 'color: darkblue;'>${TempMedCard}°C</p>`
+        if (tipo == 'Mussarela') {
+
+            roxo1.innerHTML = '4°C'
+            roxo2.innerHTML = '51%'
+
+            azul1.innerHTML = '6°C'
+            azul2.innerHTML = '53%'
+
+            verde1.innerHTML = '7/8°C'
+            verde2.innerHTML = '55%/56%'
+
+            amarelo1.innerHTML = '9°C'
+            amarelo2.innerHTML = '58%'
+
+            vermelho1.innerHTML = '10°C'
+            vermelho2.innerHTML = '59%'
+
+            if (temperaturaCard >= 7 && temperaturaCard < 9) {
+
+                temperatura_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: green;'>${TempMedCard}°C</p>`
+
+            } else {
+
+                if (temperaturaCard < 5) {
+                    temperatura_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: darkblue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 5 && temperaturaCard < 7) {
+                    temperatura_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: blue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 9 && temperaturaCard < 10) {
+                    temperatura_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: yellow;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 10) {
+                    temperatura_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: red;'>${TempMedCard}°C</p>`
+                }
             }
 
-            if (temperaturaCard > 4 && temperaturaCard <= 6) {
-                temperatura_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
-                temperatura_geralN.innerHTML = `<p style = 'color: blue;'>${TempMedCard}°C</p>`
-            }
+            if (umidadeCard >= 55 && umidadeCard < 57) {
+                umidade_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: green;'>${UMedCard}%</p>`
+            } else {
 
-            if (temperaturaCard > 8 && temperaturaCard <= 9) {
-                temperatura_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
-                temperatura_geralN.innerHTML = `<p style = 'color: yellow;'>${TempMedCard}°C</p>`
-            }
+                if (umidadeCard < 52) {
+                    umidade_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: darkblue;'>${UMedCard}%</p>`
+                }
 
-            if (temperaturaCard > 9 ) {
-                temperatura_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
-                temperatura_geralN.innerHTML = `<p style = 'color: red;'>${TempMedCard}°C</p>`
+                if (umidadeCard >= 52 && umidadeCard < 55) {
+                    umidade_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: blue;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 56 && umidadeCard < 59) {
+                    umidade_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: yellow;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 59) {
+                    umidade_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: red;'>${UMedCard}%</p>`
+                }
             }
         }
 
-        if (umidadeCard >= 83 && umidadeCard <= 84) {
-            umidade_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
-            umidade_geralN.innerHTML = `<p style = 'color: green;'>${UMedCard}%</p>`
-        } else {
-            
-            if (umidadeCard <= 78) {
-                umidade_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
-                umidade_geralN.innerHTML = `<p style = 'color: darkblue;'>${UMedCard}%</p>`
+        if (tipo == 'Canastra') {
+
+            roxo1.innerHTML = '4°C'
+            roxo2.innerHTML = '70%'
+
+            azul1.innerHTML = '6°C'
+            azul2.innerHTML = '74%'
+
+            verde1.innerHTML = '7/14°C'
+            verde2.innerHTML = '82%/88%'
+
+            amarelo1.innerHTML = '17°C'
+            amarelo2.innerHTML = '90%'
+
+            vermelho1.innerHTML = '19°C'
+            vermelho2.innerHTML = '94%'
+
+            if (temperaturaCard >= 7 && temperaturaCard < 15) {
+
+                temperatura_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: green;'>${TempMedCard}°C</p>`
+
+            } else {
+
+                if (temperaturaCard < 5) {
+                    temperatura_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: darkblue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 5 && temperaturaCard < 7) {
+                    temperatura_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: blue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 15 && temperaturaCard < 19) {
+                    temperatura_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: yellow;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 19) {
+                    temperatura_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: red;'>${TempMedCard}°C</p>`
+                }
             }
 
-            if (umidadeCard > 78 && umidadeCard <= 79) {
-                umidade_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
-                umidade_geralN.innerHTML = `<p style = 'color: blue;'>${UMedCard}%</p>`
-            }
+            if (umidadeCard >= 82 && umidadeCard < 89) {
+                umidade_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: green;'>${UMedCard}%</p>`
+            } else {
 
-            if (umidadeCard > 84 && umidadeCard <= 85) {
-                umidade_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
-                umidade_geralN.innerHTML = `<p style = 'color: yellow;'>${UMedCard}%</p>`
-            }
+                if (umidadeCard < 70) {
+                    umidade_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: darkblue;'>${UMedCard}%</p>`
+                }
 
-            if (umidadeCard > 85 ) {
-                umidade_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
-                umidade_geralN.innerHTML = `<p style = 'color: red;'>${UMedCard.tofixed}%</p>`
+                if (umidadeCard >= 70 && umidadeCard < 82) {
+                    umidade_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: blue;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 89 && umidadeCard < 94) {
+                    umidade_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: yellow;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 94) {
+                    umidade_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: red;'>${UMedCard}%</p>`
+                }
             }
         }
+
+        if (tipo == 'Prato') {
+
+            roxo1.innerHTML = '7°C'
+            roxo2.innerHTML = '78%'
+
+            azul1.innerHTML = '9°C'
+            azul2.innerHTML = '79%'
+
+            verde1.innerHTML = '10/11°C'
+            verde2.innerHTML = '83%/84%'
+
+            amarelo1.innerHTML = '12°C'
+            amarelo2.innerHTML = '85%'
+
+            vermelho1.innerHTML = '14°C'
+            vermelho2.innerHTML = '87%'
+
+            if (temperaturaCard >= 10 && temperaturaCard < 12) {
+
+                temperatura_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                temperatura_geralN.innerHTML = `<p style = 'color: green;'>${TempMedCard}°C</p>`
+
+            } else {
+
+                if (temperaturaCard < 8) {
+                    temperatura_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: darkblue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 8 && temperaturaCard < 10) {
+                    temperatura_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: blue;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 12 && temperaturaCard < 14) {
+                    temperatura_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: yellow;'>${TempMedCard}°C</p>`
+                }
+
+                if (temperaturaCard >= 14) {
+                    temperatura_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    temperatura_geralN.innerHTML = `<p style = 'color: red;'>${TempMedCard}°C</p>`
+                }
+            }
+
+            if (umidadeCard >= 83 && umidadeCard < 85) {
+                umidade_geral.innerHTML = `<p style = 'color: green;'>Nenhum problema</p>`
+                umidade_geralN.innerHTML = `<p style = 'color: green;'>${UMedCard}%</p>`
+            } else {
+
+                if (umidadeCard < 79) {
+                    umidade_geral.innerHTML = `<p style = 'color: darkblue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: darkblue;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 79 && umidadeCard < 83) {
+                    umidade_geral.innerHTML = `<p style = 'color: blue;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: blue;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 85 && umidadeCard < 87) {
+                    umidade_geral.innerHTML = `<p style = 'color: yellow;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: yellow;'>${UMedCard}%</p>`
+                }
+
+                if (umidadeCard >= 87) {
+                    umidade_geral.innerHTML = `<p style = 'color: red;'>Alerta câmara ${camara}</p>`
+                    umidade_geralN.innerHTML = `<p style = 'color: red;'>${UMedCard}%</p>`
+                }
+            }
+        }
+
+
     }
-    setInterval(function(){ 
+    setInterval(function () {
         cards()
-  }, 2000);
+    }, 1000);
 </script>
+
 </html>
