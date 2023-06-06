@@ -15,5 +15,4 @@ router.get("/calcularMedidas/:idAquario", function (req, res) {
     medidaController.calcularMedidas(req, res);
 })
 
-
 module.exports = router;

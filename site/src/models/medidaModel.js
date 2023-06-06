@@ -102,20 +102,17 @@ function buscarMedidasEmTempoReal(idAquario) {
 // função criada pelo davi copiando a função buscarUltimasMedidas
 function calcularMedidas() {
 
-    instrucaoSql = `SELECT 
-        ROUND(AVG(Temperatura), 2) AS 'mediaTemperatura', 
-        ROUND(AVG(Umidade), 2) AS 'mediaUmidade',
-        MAX(Temperatura) AS 'maiorTemperatura',
-        MIN(Temperatura) AS 'menorTemperatura',
-        MAX(Umidade) AS 'maiorUmidade',
-        MIN(Umidade) AS 'menorUmidade'
-        FROM 
-        Registro_Sensor
-        WHERE 
-        fkSensor = 1
-        ORDER BY 
-        idRegistro DESC
-    LIMIT 7`;
+    instrucaoSql = `select 
+    avg(Temperatura) as 'medTemp', 
+    avg(Umidade) as 'medUmi',
+    max(Temperatura) as 'maiorTemp',
+    min(Temperatura) as 'menorTemp',
+    max(Umidade) as 'maiorUmi',
+    min(Umidade) as'menorUmi'
+                from Registro_Sensor
+                 WHERE fkSensor = 1
+        ORDER BY idRegistro DESC
+        LIMIT 7 `;
 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
