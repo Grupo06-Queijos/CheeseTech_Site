@@ -208,7 +208,6 @@
      console.log(dados_recebidos)
      } 
   */
-
     function calcularMedidas() {
         fetch(`/medidas/calcularMedidas/${1}`)
             .then(resposta => {
@@ -238,7 +237,6 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
-
     }
     function alertar(VARTempMed, VARUmiMed, VARTempMax, VARTempMin, VARUmiMax, VARUmiMin) {
            
@@ -251,6 +249,7 @@
 
             localStorage.setItem("umidadeMedia",VARUmiMed)
             localStorage.setItem("temperaturaMedia",VARTempMed)
+            
     }
     
     function obterDadosGrafico(idAquario) {
